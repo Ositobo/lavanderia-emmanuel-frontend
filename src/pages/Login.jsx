@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import paisaje from '../assets/paisaje.avif';
 
 function Login() {
   const [usuario, setUsuario] = useState('');
@@ -66,15 +67,21 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#f5f5f5',
+    backgroundImage: `url(${paisaje})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(255, 255, 255, 0.25)',
+    backdropFilter: 'blur(16px)',
+    WebkitBackdropFilter: 'blur(16px)',
     borderRadius: '14px',
     padding: '36px 32px',
     width: '100%',
     maxWidth: '360px',
-    border: '1px solid #ddd',
+    border: '1px solid rgba(255, 255, 255, 0.35)',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -82,7 +89,7 @@ const styles = {
     width: '48px',
     height: '48px',
     borderRadius: '12px',
-    backgroundColor: '#5c8aa8',
+    backgroundColor: 'rgba(92, 138, 168, 0.8)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -94,10 +101,11 @@ const styles = {
     fontWeight: 500,
     textAlign: 'center',
     margin: '0 0 4px',
+    color: '#1a1a1a',
   },
   subtitle: {
     fontSize: '13px',
-    color: '#666',
+    color: '#333',
     textAlign: 'center',
     margin: '0 0 24px',
   },
@@ -105,12 +113,14 @@ const styles = {
     fontSize: '13px',
     fontWeight: 500,
     marginBottom: '6px',
+    color: '#1a1a1a',
   },
   input: {
     padding: '10px',
     fontSize: '14px',
     borderRadius: '6px',
-    border: '1px solid #ccc',
+    border: '1px solid rgba(255,255,255,0.6)',
+    backgroundColor: 'rgba(255,255,255,0.5)',
     marginBottom: '14px',
     boxSizing: 'border-box',
   },

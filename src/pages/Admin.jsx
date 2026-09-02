@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
+import paisaje from '../assets/paisaje.avif';
 
 function Admin() {
   const [pedidos, setPedidos] = useState([]);
@@ -104,10 +105,10 @@ function Admin() {
 
   const contarPorEstado = (estado) => pedidos.filter((p) => p.estado === estado).length;
 
-  if (cargando) return <p style={{ padding: '32px' }}>Cargando...</p>;
+  if (cargando) return <div style={styles.page}><p style={{ padding: '32px', color: '#fff' }}>Cargando...</p></div>;
 
   return (
-    <div>
+    <div style={styles.page}>
       <header style={styles.header}>
         <span style={styles.headerTitle}>Lavandería Emmanuel · Admin</span>
         <button onClick={cerrarSesion} style={styles.buttonOutline}>Cerrar sesión</button>
@@ -161,48 +162,58 @@ function Admin() {
           </div>
         </div>
 
-        <table style={styles.table}>
-          <thead>
-            <tr>
-              <th style={styles.th}>Folio</th>
-              <th style={styles.th}>Cliente</th>
-              <th style={styles.th}>Servicio</th>
-              <th style={styles.th}>Estado</th>
-              <th style={styles.th}></th>
-            </tr>
-          </thead>
-          <tbody>
-            {pedidos.map((p) => (
-              <tr key={p.id}>
-                <td style={styles.td}>{p.folio}</td>
-                <td style={styles.td}>{p.nombre_cliente}</td>
-                <td style={styles.td}>{p.servicio}</td>
-                <td style={styles.td}>
-                  <span style={styles.pill}>{p.estado}</span>
-                </td>
-                <td style={styles.td}>
-                  {siguienteEstado(p.estado) && (
-                    <button
-                      onClick={() => actualizarEstado(p.id, siguienteEstado(p.estado))}
-                      style={styles.buttonSmall}
-                    >
-                      Marcar {siguienteEstado(p.estado)}
-                    </button>
-                  )}
-                </td>
+        <div style={styles.tableWrap}>
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th style={styles.th}>Folio</th>
+                <th style={styles.th}>Cliente</th>
+                <th style={styles.th}>Servicio</th>
+                <th style={styles.th}>Estado</th>
+                <th style={styles.th}></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {pedidos.map((p) => (
+                <tr key={p.id}>
+                  <td style={styles.td}>{p.folio}</td>
+                  <td style={styles.td}>{p.nombre_cliente}</td>
+                  <td style={styles.td}>{p.servicio}</td>
+                  <td style={styles.td}>
+                    <span style={styles.pill}>{p.estado}</span>
+                  </td>
+                  <td style={styles.td}>
+                    {siguienteEstado(p.estado) && (
+                      <button
+                        onClick={() => actualizarEstado(p.id, siguienteEstado(p.estado))}
+                        style={styles.buttonSmall}
+                      >
+                        Marcar {siguienteEstado(p.estado)}
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
 }
 
 const styles = {
+  page: {
+    minHeight: '100vh',
+    backgroundImage: `url(${paisaje})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+  },
   header: {
     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-    padding: '16px 32px', backgroundColor: '#5c8aa8',
+    padding: '16px 32px', backgroundColor: 'rgba(92, 138, 168, 0.55)',
+    backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
   },
   headerTitle: { color: '#fff', fontWeight: 500, fontSize: '16px' },
   buttonOutline: {
@@ -211,27 +222,39 @@ const styles = {
   },
   container: { padding: '32px' },
   titleRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' },
-  title: { fontSize: '20px', fontWeight: 500, margin: '0 0 4px' },
-  subtitle: { fontSize: '13px', color: '#666', margin: 0 },
+  title: { fontSize: '20px', fontWeight: 500, margin: '0 0 4px', color: '#fff', textShadow: '0 1px 4px rgba(0,0,0,0.4)' },
+  subtitle: { fontSize: '13px', color: '#eee', margin: 0, textShadow: '0 1px 4px rgba(0,0,0,0.4)' },
   buttonPrimary: {
     backgroundColor: '#3b6ee0', color: '#fff', border: 'none', borderRadius: '8px',
     padding: '10px 18px', fontSize: '13px', fontWeight: 500, cursor: 'pointer',
   },
   form: {
-    display: 'flex', flexDirection: 'column', gap: '10px', backgroundColor: '#f5f5f5',
+    display: 'flex', flexDirection: 'column', gap: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)',
+    border: '1px solid rgba(255, 255, 255, 0.4)',
     padding: '20px', borderRadius: '12px', marginBottom: '24px', maxWidth: '400px',
   },
-  input: { padding: '10px', fontSize: '14px', borderRadius: '6px', border: '1px solid #ccc' },
+  input: { padding: '10px', fontSize: '14px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.6)', backgroundColor: 'rgba(255,255,255,0.6)' },
   error: { color: '#c0392b', fontSize: '13px' },
   summaryGrid: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', marginBottom: '28px' },
-  summaryCard: { backgroundColor: '#fff', border: '1px solid #ddd', borderRadius: '8px', padding: '14px' },
-  summaryLabel: { fontSize: '12px', color: '#666', margin: '0 0 4px' },
-  summaryNumber: { fontSize: '22px', fontWeight: 500, margin: 0 },
+  summaryCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.35)',
+    backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+    border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '8px', padding: '14px',
+  },
+  summaryLabel: { fontSize: '12px', color: '#333', margin: '0 0 4px' },
+  summaryNumber: { fontSize: '22px', fontWeight: 500, margin: 0, color: '#1a1a1a' },
+  tableWrap: {
+    backgroundColor: 'rgba(255, 255, 255, 0.35)',
+    backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+    border: '1px solid rgba(255, 255, 255, 0.4)', borderRadius: '12px', padding: '8px 16px',
+  },
   table: { width: '100%', borderCollapse: 'collapse', fontSize: '13px' },
-  th: { textAlign: 'left', padding: '8px 6px', color: '#666', borderBottom: '1px solid #ddd' },
-  td: { padding: '10px 6px', borderBottom: '1px solid #eee' },
+  th: { textAlign: 'left', padding: '8px 6px', color: '#333', borderBottom: '1px solid rgba(0,0,0,0.15)' },
+  td: { padding: '10px 6px', borderBottom: '1px solid rgba(0,0,0,0.08)', color: '#1a1a1a' },
   pill: { backgroundColor: '#fdf3d9', color: '#a67c00', fontSize: '12px', padding: '3px 10px', borderRadius: '8px' },
-  buttonSmall: { padding: '6px 12px', fontSize: '12px', cursor: 'pointer', borderRadius: '6px', border: '1px solid #ccc', backgroundColor: '#fff' },
+  buttonSmall: { padding: '6px 12px', fontSize: '12px', cursor: 'pointer', borderRadius: '6px', border: '1px solid #ccc', backgroundColor: 'rgba(255,255,255,0.8)' },
 };
 
 export default Admin;
