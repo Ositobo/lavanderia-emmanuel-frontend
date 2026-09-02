@@ -5,7 +5,7 @@ function Landing() {
   return (
     <div style={styles.page}>
       <header style={styles.header}>
-        <span style={styles.headerTitle}>Lavandería Emmanuel</span>
+        <span style={styles.headerTitle}>LAVANDERIA Y TINTORERIA EMMANUEL</span>
         <Link to="/consulta" style={styles.buttonSmall}>Consultar mi pedido</Link>
       </header>
 
@@ -21,27 +21,28 @@ function Landing() {
         <h2 style={styles.servicesTitle}>Nuestros servicios</h2>
         <div style={styles.cardsGrid}>
           <div style={styles.card}>
-            <p style={styles.cardTitle}>Lavado por kilo</p>
-            <p style={styles.cardPrice}>Desde $25/kg</p>
+            <p style={styles.cardTitle}>Carga mínima de 3 kg $70 Lavado por kilo</p>
+            <p style={styles.cardPrice}>Desde $24/kg</p>
           </div>
           <div style={styles.card}>
             <p style={styles.cardTitle}>Planchado</p>
-            <p style={styles.cardPrice}>Desde $15/kg</p>
+            <p style={styles.cardPrice}>Desde $19/kg</p>
           </div>
           <div style={styles.card}>
             <p style={styles.cardTitle}>Edredones y cobijas</p>
             <p style={styles.cardPrice}>Desde $80</p>
           </div>
           <div style={styles.card}>
-            <p style={styles.cardTitle}>Ropa delicada</p>
-            <p style={styles.cardPrice}>Desde $40/kg</p>
+            <p style={styles.cardTitle}>Ropa delicada Tintoreria</p>
+            <p style={styles.cardPrice}></p>
           </div>
         </div>
       </section>
 
       <footer style={styles.footer}>
         <p style={styles.footerText}>777-450-65-33</p>
-        <p style={styles.footerSubtext}>Lunes a viernes 7:00am - 6:00pm · Miércoles descanso</p>
+        <p style={styles.footerSubtext}>Jueves a martes de 7:00 am a 6:00 pm * Miércoles descanso</p>
+        <p style={styles.footerSubtext}>Sábado y Domingo de 7:00 a 3:00 pm</p>
       </footer>
     </div>
   );

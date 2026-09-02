@@ -36,7 +36,7 @@ function Consulta() {
   return (
     <div style={styles.page}>
       <header style={styles.header}>
-        <span style={styles.headerTitle}>Lavandería Emmanuel</span>
+        <span style={styles.headerTitle}>LAVANDERIA Y TINTORERIA EMMANUEL</span>
         <Link to="/" style={styles.buttonOutline}>Volver al inicio</Link>
       </header>
 

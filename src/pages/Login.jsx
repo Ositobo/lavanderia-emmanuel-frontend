@@ -30,7 +30,7 @@ function Login() {
     <div style={styles.wrapper}>
       <form onSubmit={iniciarSesion} style={styles.card}>
         <div style={styles.iconBox}>🧺</div>
-        <h1 style={styles.title}>Lavandería Emmanuel</h1>
+        <h1 style={styles.title}>LAVANDERIA Y TINTORERIA EMMANUEL</h1>
         <p style={styles.subtitle}>Acceso administrador</p>
 
         <label style={styles.label}>Usuario</label>

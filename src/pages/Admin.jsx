@@ -110,7 +110,7 @@ function Admin() {
   return (
     <div style={styles.page}>
       <header style={styles.header}>
-        <span style={styles.headerTitle}>Lavandería Emmanuel · Admin</span>
+        <span style={styles.headerTitle}>LAVANDERIA Y TINTORERIA EMMANUEL · Admin</span>
         <button onClick={cerrarSesion} style={styles.buttonOutline}>Cerrar sesión</button>
       </header>
 
